@@ -1,0 +1,6 @@
+tmp/
+.terraform/
+*terraform.tfstate*
+tfplan
+secrets*
+*.log
