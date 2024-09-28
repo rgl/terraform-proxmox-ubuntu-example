@@ -81,19 +81,21 @@ data "cloudinit_config" "example" {
         lock_passwd: false
         ssh_authorized_keys:
           - ${jsonencode(trimspace(file("~/.ssh/id_rsa.pub")))}
+    device_aliases:
+      data: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
     disk_setup:
-      /dev/sdb:
+      data:
         table_type: gpt
         layout:
           - [100, 83]
         overwrite: false
     fs_setup:
       - label: data
-        device: /dev/sdb1
+        device: data
         filesystem: ext4
         overwrite: false
     mounts:
-      - [/dev/sdb1, /data, ext4, 'defaults,discard,nofail', '0', '2']
+      - [data, /data, ext4, 'defaults,discard,nofail', '0', '2']
     runcmd:
       - echo 'Hello from cloud-config runcmd!'
       - sed -i '/vagrant insecure public key/d' /home/vagrant/.ssh/authorized_keys
