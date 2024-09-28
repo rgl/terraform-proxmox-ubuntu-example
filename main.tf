@@ -165,8 +165,12 @@ resource "proxmox_virtual_environment_vm" "example" {
   provisioner "remote-exec" {
     inline = [
       <<-EOF
+      set -eux
+      cloud-init --version
       cloud-init status --long --wait
-      set -x
+      sudo cloud-init schema --system --annotate
+      EOF
+      , <<-EOF
       id
       uname -a
       cat /etc/os-release
