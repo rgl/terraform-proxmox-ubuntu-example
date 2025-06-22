@@ -1,0 +1,17 @@
+{
+  "name": "Terraform",
+  "dockerFile": "Dockerfile",
+  "runArgs": [
+    "-v=${localEnv:HOME}/.ssh/id_rsa:/home/vscode/.ssh/id_rsa:ro",
+    "-v=${localEnv:HOME}/.ssh/id_rsa.pub:/home/vscode/.ssh/id_rsa.pub:ro"
+  ],
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.terraform",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  }
+}

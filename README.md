@@ -4,17 +4,14 @@
 
 Create and install the [base Ubuntu 22.04 template](https://github.com/rgl/ubuntu-vagrant).
 
-Install Terraform:
+Install the dependencies:
 
-```bash
-# see https://github.com/hashicorp/terraform/releases
-# renovate: datasource=github-releases depName=hashicorp/terraform
-terraform_version='1.12.2'
-wget "https://releases.hashicorp.com/terraform/$terraform_version/terraform_${$terraform_version}_linux_amd64.zip"
-unzip "terraform_${$terraform_version}_linux_amd64.zip"
-sudo install terraform /usr/local/bin
-rm terraform terraform_*_linux_amd64.zip
-```
+* [Visual Studio Code](https://code.visualstudio.com).
+* [Dev Container plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+
+Open this directory with the Dev Container plugin.
+
+Open `bash` inside the Visual Studio Code Terminal.
 
 Set your proxmox details:
 
