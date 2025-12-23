@@ -183,6 +183,7 @@ resource "proxmox_virtual_environment_vm" "example" {
       echo "machine-id is $(cat /etc/machine-id)"
       hostname --fqdn
       cat /etc/hosts
+      ip addr
       sudo sfdisk -l
       lsblk -x KNAME -o KNAME,SIZE,TRAN,SUBSYSTEMS,FSTYPE,UUID,LABEL,MODEL,SERIAL
       mount | grep ^/dev
