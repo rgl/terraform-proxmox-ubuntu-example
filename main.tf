@@ -77,10 +77,14 @@ data "cloudinit_config" "example" {
     manage_etc_hosts: true
     users:
       - name: vagrant
-        passwd: '$6$rounds=4096$NQ.EmIrGxn$rTvGsI3WIsix9TjWaDfKrt9tm3aa7SX7pzB.PSjbwtLbsplk1HsVzIrZbXwQNce6wmeJXhCq9YFJHDx9bXFHH.'
         lock_passwd: false
         ssh_authorized_keys:
           - ${jsonencode(trimspace(file("~/.ssh/id_rsa.pub")))}
+    chpasswd:
+      expire: false
+      users:
+        - name: vagrant
+          password: '$6$rounds=4096$NQ.EmIrGxn$rTvGsI3WIsix9TjWaDfKrt9tm3aa7SX7pzB.PSjbwtLbsplk1HsVzIrZbXwQNce6wmeJXhCq9YFJHDx9bXFHH.'
     device_aliases:
       data: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
     disk_setup:
