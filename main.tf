@@ -192,6 +192,7 @@ resource "proxmox_virtual_environment_vm" "example" {
       , <<-EOF
       sudo apt-get update
       sudo apt-get install -y tpm2-tools
+      sudo journalctl -k --grep=tpm --no-pager
       sudo systemd-cryptenroll --tpm2-device=list
       sudo tpm2 getekcertificate | openssl x509 -text -noout
       sudo tpm2 pcrread
