@@ -48,7 +48,7 @@ variable "proxmox_pve_node_address" {
 
 # see https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/data-sources/virtual_environment_vms
 data "proxmox_virtual_environment_vms" "ubuntu_templates" {
-  tags = ["ubuntu-22.04", "template"]
+  tags = ["ubuntu-24.04", "template"]
 }
 
 # see https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/data-sources/virtual_environment_vm
@@ -123,7 +123,7 @@ resource "proxmox_virtual_environment_file" "example_ci_user_data" {
 resource "proxmox_virtual_environment_vm" "example" {
   name      = var.prefix
   node_name = "pve"
-  tags      = sort(["ubuntu-22.04", "example", "terraform"])
+  tags      = sort(["ubuntu-24.04", "example", "terraform"])
   clone {
     vm_id = data.proxmox_virtual_environment_vm.ubuntu_template.vm_id
     full  = false
@@ -186,7 +186,8 @@ resource "proxmox_virtual_environment_vm" "example" {
       cat /etc/hosts
       ip addr
       sudo sfdisk -l
-      lsblk -x KNAME -o KNAME,SIZE,TRAN,SUBSYSTEMS,FSTYPE,UUID,LABEL,MODEL,SERIAL
+      # TODO why adding -o UUID,MODEL,SERIAL to lsblk stalls lsblk when executed from terraform?
+      lsblk -x KNAME -o KNAME,SIZE,TRAN,SUBSYSTEMS,FSTYPE,LABEL
       mount | grep -E '^/dev/' | sort
       df -h
       sudo tune2fs -l "$(findmnt -n -o SOURCE /data)"

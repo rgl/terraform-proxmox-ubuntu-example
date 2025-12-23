@@ -1,8 +1,8 @@
-# Usage (from a Ubuntu 22.04 host)
+# Usage (from a Ubuntu 24.04 host)
 
 [![Lint](https://github.com/rgl/terraform-proxmox-ubuntu-example/actions/workflows/lint.yml/badge.svg)](https://github.com/rgl/terraform-proxmox-ubuntu-example/actions/workflows/lint.yml)
 
-Create and install the [base Ubuntu 22.04 template](https://github.com/rgl/ubuntu-vagrant).
+Create and install the [base Ubuntu 24.04 template](https://github.com/rgl/ubuntu-vagrant).
 
 Install the dependencies:
 
