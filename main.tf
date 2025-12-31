@@ -18,7 +18,7 @@ terraform {
     # see https://github.com/bpg/terraform-provider-proxmox
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.89.1"
+      version = "0.90.0"
     }
   }
 }
@@ -46,12 +46,12 @@ variable "proxmox_pve_node_address" {
   type = string
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/data-sources/virtual_environment_vms
+# see https://registry.terraform.io/providers/bpg/proxmox/0.90.0/docs/data-sources/virtual_environment_vms
 data "proxmox_virtual_environment_vms" "ubuntu_templates" {
   tags = ["ubuntu-24.04", "template"]
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/data-sources/virtual_environment_vm
+# see https://registry.terraform.io/providers/bpg/proxmox/0.90.0/docs/data-sources/virtual_environment_vm
 data "proxmox_virtual_environment_vm" "ubuntu_template" {
   node_name = data.proxmox_virtual_environment_vms.ubuntu_templates.vms[0].node_name
   vm_id     = data.proxmox_virtual_environment_vms.ubuntu_templates.vms[0].vm_id
@@ -108,7 +108,7 @@ data "cloudinit_config" "example" {
   }
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_file
+# see https://registry.terraform.io/providers/bpg/proxmox/0.90.0/docs/resources/virtual_environment_file
 resource "proxmox_virtual_environment_file" "example_ci_user_data" {
   content_type = "snippets"
   datastore_id = "local"
@@ -119,7 +119,7 @@ resource "proxmox_virtual_environment_file" "example_ci_user_data" {
   }
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.89.1/docs/resources/virtual_environment_vm
+# see https://registry.terraform.io/providers/bpg/proxmox/0.90.0/docs/resources/virtual_environment_vm
 resource "proxmox_virtual_environment_vm" "example" {
   name      = var.prefix
   node_name = "pve"
