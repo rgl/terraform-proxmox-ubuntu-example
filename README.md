@@ -17,7 +17,7 @@ Set your proxmox details:
 
 ```bash
 # see https://registry.terraform.io/providers/bpg/proxmox/latest/docs#argument-reference
-# see https://github.com/bpg/terraform-provider-proxmox/blob/v0.90.0/proxmoxtf/provider/provider.go#L52-L61
+# see https://github.com/bpg/terraform-provider-proxmox/blob/v0.106.0/proxmoxtf/provider/provider.go#L52-L61
 cat >secrets-proxmox.sh <<EOF
 unset HTTPS_PROXY
 #export HTTPS_PROXY='http://localhost:8080'
@@ -47,6 +47,7 @@ Login into the machine:
 ```bash
 ssh-keygen -f ~/.ssh/known_hosts -R "$(terraform output --raw ip)"
 ssh "vagrant@$(terraform output --raw ip)"
+exit
 ```
 
 Destroy the infrastructure:
