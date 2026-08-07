@@ -17,10 +17,12 @@ Set your proxmox details:
 
 ```bash
 # see https://registry.terraform.io/providers/bpg/proxmox/latest/docs#argument-reference
-# see https://github.com/bpg/terraform-provider-proxmox/blob/v0.109.0/proxmoxtf/provider/provider.go#L52-L61
+# see https://github.com/bpg/terraform-provider-proxmox/blob/v0.111.0/proxmoxtf/provider/provider.go#L52-L61
+# NB this expects that the proxmox_pve_node_username user has passwordless ssh key authentication and sudo.
 cat >secrets-proxmox.sh <<EOF
 unset HTTPS_PROXY
 #export HTTPS_PROXY='http://localhost:8080'
+export TF_VAR_proxmox_pve_node_username='vagrant'
 export TF_VAR_proxmox_pve_node_address='192.168.1.21'
 export PROXMOX_VE_INSECURE='1'
 export PROXMOX_VE_ENDPOINT="https://$TF_VAR_proxmox_pve_node_address:8006"
