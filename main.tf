@@ -1,24 +1,24 @@
 # see https://github.com/hashicorp/terraform
 terraform {
-  required_version = "1.15.8"
+  required_version = "1.16.5"
   required_providers {
     # see https://registry.terraform.io/providers/hashicorp/random
     # see https://github.com/hashicorp/terraform-provider-random
     random = {
       source  = "hashicorp/random"
-      version = "3.9.0"
+      version = "3.9.1"
     }
     # see https://registry.terraform.io/providers/hashicorp/cloudinit
     # see https://github.com/hashicorp/terraform-provider-cloudinit
     cloudinit = {
       source  = "hashicorp/cloudinit"
-      version = "2.4.0"
+      version = "2.4.1"
     }
     # see https://registry.terraform.io/providers/bpg/proxmox
     # see https://github.com/bpg/terraform-provider-proxmox
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.111.1"
+      version = "0.116.0"
     }
   }
 }
@@ -52,12 +52,12 @@ variable "proxmox_pve_node_address" {
   type = string
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.111.1/docs/data-sources/virtual_environment_vms
+# see https://registry.terraform.io/providers/bpg/proxmox/0.116.0/docs/data-sources/virtual_environment_vms
 data "proxmox_virtual_environment_vms" "ubuntu_templates" {
   tags = ["ubuntu-26.04-uefi", "template"]
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.111.1/docs/data-sources/vm
+# see https://registry.terraform.io/providers/bpg/proxmox/0.116.0/docs/data-sources/vm
 data "proxmox_vm" "ubuntu_template" {
   node_name = data.proxmox_virtual_environment_vms.ubuntu_templates.vms[0].node_name
   id        = data.proxmox_virtual_environment_vms.ubuntu_templates.vms[0].vm_id
@@ -114,7 +114,7 @@ data "cloudinit_config" "example" {
   }
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.111.1/docs/resources/virtual_environment_file
+# see https://registry.terraform.io/providers/bpg/proxmox/0.116.0/docs/resources/virtual_environment_file
 resource "proxmox_virtual_environment_file" "example_ci_user_data" {
   content_type = "snippets"
   datastore_id = "local"
@@ -125,7 +125,7 @@ resource "proxmox_virtual_environment_file" "example_ci_user_data" {
   }
 }
 
-# see https://registry.terraform.io/providers/bpg/proxmox/0.111.1/docs/resources/virtual_environment_vm
+# see https://registry.terraform.io/providers/bpg/proxmox/0.116.0/docs/resources/virtual_environment_vm
 resource "proxmox_virtual_environment_vm" "example" {
   name      = var.prefix
   node_name = "pve"
